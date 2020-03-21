@@ -131,7 +131,7 @@
     <view class="goods-text" style="margin-top:15rpx;border-bottom:1px solid #eee;" wx:for="{{pingtuanList}}" wx:key="id">
       <view style="width:150rpx;float:left;">
         <image style="width: 150rpx; height: 150rpx;" src="{{item.apiExtUser.avatarUrl}}"></image>
-        <view style="width:150rpx;text-align:center;">{{item.apiExtUser.nick}}</view>
+        <view style="width:150rpx;text-align:center;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">{{item.apiExtUser.nick}}</view>
       </view>
       <view style="width:500rpx;float:left;margin-left:35rpx;">
         <view>已有
@@ -257,7 +257,7 @@
         </view>
       </view>
       <view class="safeAreaOldPaddingBttom safeAreaNewPaddingBttom" wx:if="{{shopType =='addShopCar'}}" bindtap="addShopCar">
-        <view class="popup-join-btn">加入购物车</view>
+        <view class="popup-join-btn">加入我的课程</view>
       </view>
       <view class="safeAreaOldPaddingBttom safeAreaNewPaddingBttom" data-shopType="{{shopType}}" wx:if="{{shopType =='tobuy' || shopType =='toPingtuan'}}" bindtap="buyNow">
         <view class="popup-join-btn">立即购买</view>
