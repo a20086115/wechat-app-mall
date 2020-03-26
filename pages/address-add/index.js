@@ -8,6 +8,13 @@ Page({
     cIndex: 0,//选择的市下标
     areas: undefined,// 区县数数组
     aIndex: 0,//选择的区下标
+    sex: "男",
+    age: ""
+  },
+  radioChange(e) {
+    this.setData({
+      sex: e.detail.value
+    })
   },
   async provinces(provinceId, cityId, districtId) {
     const res = await WXAPI.province()
@@ -128,7 +135,15 @@ Page({
     const linkMan = e.detail.value.linkMan;
     const address = e.detail.value.address;
     const mobile = e.detail.value.mobile;
+    const age = e.detail.value.age;
     const code = '322000';
+    if (age == "") {
+      wx.showToast({
+        title: '请填写年龄',
+        icon: 'none'
+      })
+      return
+    }
     if (linkMan == ""){
       wx.showToast({
         title: '请填写联系人姓名',
@@ -152,7 +167,7 @@ Page({
     }    
     const postData = {
       token: wx.getStorageSync('token'),
-      linkMan: linkMan,
+      linkMan: linkMan + "_" + age + "_" + this.data.sex,
       address: address,
       mobile: mobile,
       code: code,
@@ -190,8 +205,13 @@ Page({
     if (e.id) { // 修改初始化数据库数据
       const res = await WXAPI.addressDetail(wx.getStorageSync('token'), e.id)
       if (res.code == 0) {
+        // 获取性别年龄信息
+        var arr = res.data.info.linkMan.split('_');
+        res.data.info.linkMan = arr[0];
         this.setData({
           id: e.id,
+          age: arr[1],
+          sex: arr[2],
           addressData: res.data.info
         })
         this.provinces(res.data.info.provinceId, res.data.info.cityId, res.data.info.districtId)
@@ -210,7 +230,7 @@ Page({
     const id = e.currentTarget.dataset.id;
     wx.showModal({
       title: '提示',
-      content: '确定要删除该收货地址吗？',
+      content: '确定要删除该记录吗？',
       success: function (res) {
         if (res.confirm) {
           WXAPI.deleteAddress(wx.getStorageSync('token'), id).then(function () {

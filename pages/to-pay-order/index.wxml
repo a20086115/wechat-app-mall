@@ -24,8 +24,8 @@
   </view>
   <view class="peisong-way">
     <view class="row-box" wx:if="{{isNeedLogistics > 0}}">
-      <view class="row-label">配送方式</view>
-      <radio-group bindchange="radioChange">
+      <view class="row-label">学生资料</view>
+      <radio-group class="hide" bindchange="radioChange">
         <label class="radio">
           <radio value="kd" checked="{{peisongType == 'kd'}}" /> 快递
         </label>
@@ -37,7 +37,7 @@
     <view class="address-box" wx:if="{{peisongType == 'kd' && isNeedLogistics > 0}}">
       <view class="add-address" hidden="{{curAddressData}}" bindtap="addAddress">
         <image src="/images/add-addr.png"></image>
-        <view>新增收货地址</view>
+        <view>新增学生资料</view>
       </view>
       <view class="show-address" hidden="{{!curAddressData}}" bindtap="selectAddress">
         <view class="name-tel">{{curAddressData.linkMan}} {{curAddressData.mobile}}</view>

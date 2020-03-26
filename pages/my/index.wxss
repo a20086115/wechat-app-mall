@@ -127,3 +127,6 @@ page,view,image,input {
   background:#EEEEEE;
   margin-left: 32rpx;
 }
+.hide{
+  display: none !important;
+}

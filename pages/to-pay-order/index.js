@@ -126,7 +126,7 @@ Page({
       if (!that.data.curAddressData) {
         wx.hideLoading();
         wx.showToast({
-          title: '请设置收货地址',
+          title: '请设置学生地址',
           icon: 'none'
         })
         return;

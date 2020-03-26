@@ -65,7 +65,7 @@
         "pagePath": "pages/shop-cart/index",
         "iconPath": "images/nav/cart-off.png",
         "selectedIconPath": "images/nav/cart-on.png",
-        "text": "购物车"
+        "text": "我的课程"
       },
       {
         "pagePath": "pages/my/index",

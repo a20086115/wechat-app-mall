@@ -349,7 +349,7 @@ Page({
 
     this.closePopupTap();
     wx.showToast({
-      title: '加入购物车',
+      title: '加入我的课程',
       icon: 'success'
     })
     this.shippingCartInfo()

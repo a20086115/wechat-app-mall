@@ -48,9 +48,20 @@ function wxpay(type, money, orderId, redirectUrl, data) {
           wx.showToast({
             title: '支付成功'
           })
-          wx.redirectTo({
-            url: redirectUrl
-          });
+          wx.requestSubscribeMessage({
+            tmplIds: ['kNrb5coS5BuEZ3j0oLP9vG4VGbV5Y5mK-0UR-KA2uUk','ZwTwixDHHxElDgTy3DfjSZXgSO3wj4gg9uzCQTvHjOI'],
+            success(res) { 
+              wx.redirectTo({
+                url: redirectUrl
+              });
+            },
+            fail(res){
+              wx.redirectTo({
+                url: redirectUrl
+              });
+            }
+          })
+     
         }
       })
     } else {
