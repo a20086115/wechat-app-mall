@@ -62,6 +62,7 @@ Page({
       allowSelfCollection: allowSelfCollection,
       peisongType: this.data.peisongType
     });
+    console.log(this.data.goodsList)
     this.initShippingAddress()
   },
 
@@ -92,8 +93,7 @@ Page({
   },
   goCreateOrder(){
     wx.requestSubscribeMessage({
-      tmplIds: ['ITVuuD_cwYN-5BjXne8cSktDo43xetj0u-lpvFZEQQs',
-        'dw9Tzh9r0sw7Gjab0ovQJx3bP3gdXmF_FZvpnxPd6hc'],
+      tmplIds: ['aakNrb5coS5BuEZ3j0oLP9vNJs49-Mta4dBSpEHe3c4Bg', 'aaAa-7o_9vGBNsxeh-h4u87tgNq9IzhP8KhVuiNjyTzxo'],
       success(res) {
         
       },
@@ -141,6 +141,10 @@ Page({
         postData.linkMan = that.data.curAddressData.linkMan;
         postData.mobile = that.data.curAddressData.mobile;
         postData.code = that.data.curAddressData.code;
+        // 扩展一个收件人姓名字段和商品名称字段 用来推送
+        postData.extJsonStr = JSON.stringify({
+            manName: postData.linkMan.split("_")[0]
+        });
       }      
     }
     if (that.data.curCoupon) {

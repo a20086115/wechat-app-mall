@@ -49,7 +49,7 @@ function wxpay(type, money, orderId, redirectUrl, data) {
             title: '支付成功'
           })
           wx.requestSubscribeMessage({
-            tmplIds: ['kNrb5coS5BuEZ3j0oLP9vG4VGbV5Y5mK-0UR-KA2uUk','ZwTwixDHHxElDgTy3DfjSZXgSO3wj4gg9uzCQTvHjOI'],
+            tmplIds: ['kNrb5coS5BuEZ3j0oLP9vNJs49-Mta4dBSpEHe3c4Bg','Aa-7o_9vGBNsxeh-h4u87tgNq9IzhP8KhVuiNjyTzxo'],
             success(res) { 
               wx.redirectTo({
                 url: redirectUrl
