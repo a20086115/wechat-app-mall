@@ -157,6 +157,7 @@ Page({
         const pingtuanSetRes = await WXAPI.pingtuanSet(goodsId)
         if (pingtuanSetRes.code == 0) {
           _data.pingtuanSet = pingtuanSetRes.data
+          _data.selectSizePrice = goodsDetailRes.data.basicInfo.pingtuanPrice
         }        
       }
       that.setData(_data);
@@ -184,13 +185,15 @@ Page({
     if (e.currentTarget.dataset.pingtuanopenid) {
       pingtuanopenid = e.currentTarget.dataset.pingtuanopenid
     }
+    console.log(this.data.goodsDetail)
     this.setData({
       shopType: "toPingtuan",
+      hideShopPopup: false,
       selectSizePrice: this.data.goodsDetail.basicInfo.pingtuanPrice,
       selectSizeOPrice: this.data.goodsDetail.basicInfo.originalPrice,
-      pingtuanopenid: pingtuanopenid
+      pingtuanopenid: pingtuanopenid,
+      skuGoodsPic: this.data.goodsDetail.basicInfo.pic
     });
-    this.bindGuiGeTap();
   },
   /**
    * 规格选择弹出框
@@ -649,16 +652,17 @@ Page({
     }
     const qrcode = qrcodeRes.data
     const pic = _this.data.goodsDetail.basicInfo.pic
-    wx.getImageInfo({
-      src: pic,
-      success(res) {
-        const height = 490 * res.height / res.width
-        _this.drawSharePicDone(height, qrcode)
-      },
-      fail(e) {
-        console.error(e)
-      }
-    })
+    _this.drawSharePicDone(490, qrcode)
+    // wx.getImageInfo({
+    //   src: pic,
+    //   success(res) {
+    //     const height = 490 * res.height / res.width
+    //     _this.drawSharePicDone(height, qrcode)
+    //   },
+    //   fail(e) {
+    //     console.error(e)
+    //   }
+    // })
   },
   drawSharePicDone(picHeight, qrcode) {
     const _this = this
@@ -700,7 +704,7 @@ Page({
           {
             x: 375,
             y: _baseHeight + 80,
-            width: 750,
+            width: 650,
             lineNum:2,
             text: _this.data.goodsDetail.basicInfo.name,
             textAlign: 'center',
@@ -710,7 +714,7 @@ Page({
           {
             x: 375,
             y: _baseHeight + 180,
-            text: '￥' + _this.data.goodsDetail.basicInfo.minPrice,
+            text: '￥' + (_this.data.goodsDetail.basicInfo.pingtuan ? _this.data.goodsDetail.basicInfo.pingtuanPrice : _this.data.goodsDetail.basicInfo.pingtuan.minPrice),
             textAlign: 'center',
             fontSize: 50,
             color: '#e64340'
@@ -718,7 +722,7 @@ Page({
           {
             x: 352,
             y: _baseHeight + 320,
-            text: '长按识别小程序码',
+            text: '长按识别小程序码查看',
             fontSize: 28,
             color: '#999'
           }
@@ -739,6 +743,7 @@ Page({
     console.error('fail:', e)
   },
   savePosterPic() {
+    console.log(this.data.posterImg)
     const _this = this
     wx.saveImageToPhotosAlbum({
       filePath: this.data.posterImg,

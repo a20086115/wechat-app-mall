@@ -73,7 +73,7 @@
           <view class="weui-label">年龄</view>
         </view>
         <view class="weui-cell__bd">
-          <input name="age" class="weui-input" type="text" placeholder="请填写学生年龄" value="{{age}}" />
+          <input name="age" class="weui-input" type="number" placeholder="请填写学生年龄" value="{{age}}" />
         </view>
       </view>
       <view class="weui-cell">

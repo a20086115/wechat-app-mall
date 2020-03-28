@@ -137,7 +137,7 @@ Page({
     const mobile = e.detail.value.mobile;
     const age = e.detail.value.age;
     const code = '322000';
-    if (age == "") {
+    if (!age) {
       wx.showToast({
         title: '请填写年龄',
         icon: 'none'

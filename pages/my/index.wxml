@@ -60,6 +60,7 @@
       <view class='text'>售后</view>
     </view>
   </view>
+  <!--
   <view wx:if="{{canHX}}" class="line"></view>
   <view wx:if="{{canHX}}" class="menu-item" bindtap="scanOrderCode">
     <view class="l">扫码核销</view>
@@ -133,9 +134,8 @@
       <image class="next" src="/images/icon/next.png"></image>
     </view>
   </navigator>
-  
-   <!--<view class="line"></view>
-  <navigator url="/pages/coupons/index">
+  <view class="line"></view>
+  <!--<navigator url="/pages/coupons/index">
     <view class="menu-item">
       <view class="l">领券中心</view>
       <image class="next" src="/images/icon/next.png"></image>
@@ -148,8 +148,6 @@
       <image class="next" src="/images/icon/next.png"></image>
     </view>
   </navigator>
-
-  <view class="space"></view>
   <navigator url="/pages/sign/index">
     <view class="menu-item">
       <view class="l">每日签到</view>

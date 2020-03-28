@@ -63,7 +63,6 @@ Page({
       allowSelfCollection: allowSelfCollection,
       peisongType: this.data.peisongType
     });
-    console.log(this.data.goodsList)
     this.initShippingAddress()
   },
 
