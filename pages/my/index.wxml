@@ -9,7 +9,7 @@
 		<image class="userinfo-avatar" src="/images/nologin.png" background-size="cover"></image>
 		<button class="weui-btn mini-btn" plain="true" size="mini" bindtap="goLogin">立即登录</button>
 	</view>
-  <view wx:if="{{ rechargeOpen }}" class="asset">
+  <view class="asset">
     <view class='item hide' bindtap='goAsset'>
       <view>{{balance}}</view>
       <view>余额</view>
@@ -60,7 +60,12 @@
       <view class='text'>售后</view>
     </view>
   </view>
-  <!-- <view class="line"></view>
+  <view wx:if="{{canHX}}" class="line"></view>
+  <view wx:if="{{canHX}}" class="menu-item" bindtap="scanOrderCode">
+    <view class="l">扫码核销</view>
+    <image class="next" src="/images/icon/next.png"></image>
+  </view>
+  <view class="line"></view>
   <navigator url="/pages/maidan/index">
     <view class="menu-item">
       <view class="l">优惠买单</view>
