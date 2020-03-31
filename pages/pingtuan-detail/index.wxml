@@ -1,0 +1,26 @@
+<!--miniprogram/pages/pk/pk.wxml-->
+<view class="page_container">
+
+  <van-count-down time="{{ time }}" />
+
+  <view class="memberTitle">当前成员</view>
+  <view class="memberListContiner">
+    <view class="memberListItem" wx:for="{{pingtuanInfo.joiners}}" wx:key="{{item.uidHelp}}">
+      <van-image  custom-class="memberListItem" round width="100rpx" height="100rpx" src="{{item.apiExtUserHelp.avatarUrl}}" />  
+      <view class="hideText">{{item.apiExtUserHelp.nickName}}</view>
+    </view>
+      
+  </view>
+  <view style="text-align:center">
+    <van-button open-type="share" type="info">邀请好友</van-button>
+  </view>
+ 
+  <van-dialog
+    title="PK邀请"
+    message="您的好友邀请你参与体重PK打卡~是否参加？"
+    show="{{ visibleInviteDialog }}"
+    show-cancel-button
+    bind:close="onInviteClose"
+  >
+  </van-dialog>
+</view>

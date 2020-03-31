@@ -1,0 +1,21 @@
+
+.memberTitle{
+  text-align: center;
+}
+.memberListContiner{
+  display: flex;
+  justify-content: center;
+  flex-wrap:wrap;
+  padding: 20rpx;
+}
+.memberListItem{
+  width: 16%;
+  margin: 20rpx;
+}
+
+.hideText{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space:nowrap; 
+  font-size: 24rpx
+}

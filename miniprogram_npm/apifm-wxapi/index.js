@@ -492,6 +492,9 @@ module.exports = {
   pingtuanMyJoined: function pingtuanMyJoined(data) {
     return request('/shop/goods/pingtuan/my-join-list', true, 'post', data);
   },
+  pingtuanInfo: function pingtuanInfo(data) {
+    return request('/shop/goods/pingtuan/tuanInfo', true, 'get', data);
+  },
   friendlyPartnerList: function friendlyPartnerList() {
     var type = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
 

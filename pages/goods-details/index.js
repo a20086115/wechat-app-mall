@@ -25,6 +25,8 @@ Page({
     propertyChildNames: "",
     canSubmit: false, //  选中规格尺寸时候是否允许加入购物车
     shopType: "addShopCar", //购物类型，加入购物车或立即购买，默认为加入购物车
+    pingtuanInfo: null, // 是否已经拼团过该商品
+
   },
   async onLoad(e) {
     console.log(e)
@@ -45,7 +47,35 @@ Page({
     })
     this.reputation(e.id)
     this.shippingCartInfo()
+    this.queryPingtuanMyJoined(e.id)
+  },
+  toMyPingtuan(){
+    wx.navigateTo({
+      url: "/pages/pingtuan-detail/index?tuanId=" + this.data.pingtuanInfo.id
+    })
   },  
+  async queryPingtuanMyJoined(goodsId) {
+    const token = wx.getStorageSync('token')
+    if (!token) {
+      return
+    }
+    const res = await WXAPI.pingtuanMyJoined({
+      token: token,
+      goodsId: goodsId
+    })
+    if (res.code == 0 ) {
+      for(let obj of res.data.result){
+        // 如果存在进行中的团
+        if(obj.tuanInfo.status == 0){
+          this.setData({
+            pingtuanInfo: obj.tuanInfo
+          })
+          break;
+        }
+      }
+      console.log(res)
+    }
+  },
   async shippingCartInfo(){
     const token = wx.getStorageSync('token')
     if (!token) {
