@@ -1,4 +1,6 @@
-
+page{
+  height: 100%;
+}
 .memberTitle{
   text-align: center;
 }
@@ -18,4 +20,14 @@
   text-overflow: ellipsis;
   white-space:nowrap; 
   font-size: 24rpx
+}
+.item {
+  display: inline-block;
+  width: 22px;
+  margin-right: 5px;
+  color: #fff;
+  font-size: 12px;
+  text-align: center;
+  background-color: #1989fa;
+  border-radius: 2px;
 }

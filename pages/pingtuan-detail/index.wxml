@@ -1,9 +1,30 @@
 <!--miniprogram/pages/pk/pk.wxml-->
 <view class="page_container">
+  <view style="width: 80%; margin: 35rpx auto; border: 2px solid orange;" >
+    <van-card
+      tag="拼团"
+      price="{{ goodInfo.basicInfo.pingtuanPrice }}"
+      title="{{ goodInfo.basicInfo.name }}"
+      thumb="{{ goodInfo.pics[0].pic }}"
+    >
+    <view slot="tags">
+      <van-button style="margin-top:20rpx" size="mini" plain type="warning">{{ goodInfo.basicInfo.tags }}</van-button>
+    </view>
+    </van-card>
+  </view>
+  
+  <van-count-down
+    use-slot
+    time="{{ time }}"
+    bind:change="onChange"
+    style="text-align:center;"
+  >
+    <text class="">倒计时：</text>
+    <text class="item">{{ timeData.hours < 10 ? "0" + timeData.hours: timeData.hours}}</text>
+    <text class="item">{{ timeData.minutes < 10 ? "0" + timeData.minutes: timeData.minutes}}</text>
+    <text class="item">{{ timeData.seconds < 10 ? "0" + timeData.seconds: timeData.seconds}}</text>
+  </van-count-down>
 
-  <van-count-down time="{{ time }}" />
-
-  <view class="memberTitle">当前成员</view>
   <view class="memberListContiner">
     <view class="memberListItem" wx:for="{{pingtuanInfo.joiners}}" wx:key="{{item.uidHelp}}">
       <van-image  custom-class="memberListItem" round width="100rpx" height="100rpx" src="{{item.apiExtUserHelp.avatarUrl}}" />  
@@ -12,7 +33,7 @@
       
   </view>
   <view style="text-align:center">
-    <van-button open-type="share" type="info">邀请好友</van-button>
+    <van-button open-type="share" style="width:40%" type="info">邀请好友</van-button>
   </view>
  
   <van-dialog

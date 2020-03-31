@@ -9,9 +9,10 @@ Page({
   data: {
     pingtuanId: '',
     pingtuanInfo: {},
+    goodInfo: {},
+    tags: [],
     time: dayjs().format()
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
@@ -26,7 +27,6 @@ Page({
       return
     }
     const res = await WXAPI.pingtuanInfo({
-      
       tuanId: tuanId
     })
     if (res.code == 0) {
@@ -39,16 +39,27 @@ Page({
           uidHelp: num
         })
       }
-
       let tuanInfo = res.data.tuanInfo;
       let leftTime = dayjs(tuanInfo.dateEnd).valueOf() - dayjs().valueOf();
-
       this.setData({
         pingtuanInfo: res.data,
         time: leftTime
       })
-      console.log(res)
+      this.queryGoodInfo(res.data.tuanInfo.goodsId)
     }
-    
+  },
+  async queryGoodInfo(goodId){
+    const res = await WXAPI.goodsDetail(goodId)
+    if (res.code == 0) {
+      console.log(res)
+      this.setData({
+        goodInfo: res.data
+      })
+    }
+  },
+  onChange(e) {
+    this.setData({
+      timeData: e.detail
+    });
   }
 })
