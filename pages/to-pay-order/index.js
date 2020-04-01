@@ -67,6 +67,7 @@ Page({
   },
 
   onLoad(e) {
+    console.log(e)
     let _data = {
       isNeedLogistics: 1
     }

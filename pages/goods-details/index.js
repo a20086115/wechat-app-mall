@@ -506,10 +506,16 @@ Page({
     buyNowInfo.kjId = this.data.kjId;
     return buyNowInfo;
   },
-  onShareAppMessage: function() {
+  onShareAppMessage: function(options) {
+    console.log(options)
+    console.log(this.data.pingtuanInfo)
+    let path = '/pages/goods-details/index?id=' + this.data.goodsDetail.basicInfo.id + '&inviter_id=' + wx.getStorageSync('uid');
+    if (options.target.id == "pintuanInvite"){
+      path += '&pingtuan_id=' + this.data.pingtuanInfo.id;
+    }
     let _data = {
       title: this.data.goodsDetail.basicInfo.name,
-      path: '/pages/goods-details/index?id=' + this.data.goodsDetail.basicInfo.id + '&inviter_id=' + wx.getStorageSync('uid'),
+      path: path,
       success: function(res) {
         // 转发成功
       },

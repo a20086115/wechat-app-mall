@@ -226,7 +226,7 @@
     <view wx:if="{{!goodsDetail.basicInfo.pingtuan}}" class="now-buy"  data-shopType="{{shopType}}" bindtap="{{goodsDetailSkuShowType==0?'tobuy':'buyNow'}}">立即购买</view>
     <view wx:if="{{goodsDetail.basicInfo.pingtuan && !pingtuanInfo}}" class="join-shop-cart" bindtap="tobuy">单独购买</view>
     <view wx:if="{{goodsDetail.basicInfo.pingtuan && !pingtuanInfo}}" class="now-buy" bindtap="toPingtuan">发起拼团</view>
-     <view wx:if="{{goodsDetail.basicInfo.pingtuan && pingtuanInfo}}" class="join-shop-cart" bindtap="toInviteFriend">邀请好友</view>
+     <button wx:if="{{goodsDetail.basicInfo.pingtuan && pingtuanInfo}}"  class="join-shop-cart" id="pintuanInvite" open-type='share'>邀请好友</button>
     <view wx:if="{{goodsDetail.basicInfo.pingtuan && pingtuanInfo}}" class="now-buy" bindtap="toMyPingtuan">我的拼团</view>
   </view>
   <view class="show-popup" hidden="{{hideShopPopup}}" catchtouchmove="true">
