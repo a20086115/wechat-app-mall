@@ -52,7 +52,7 @@
     <view class="goods-container">
       <view class="goods-box" wx:for="{{item.goods}}" wx:key="id" bindtap="toDetailsTap" data-id="{{item.id}}">
         <view class="img-box">
-          <image src="{{item.pic}}" class="image" mode="aspectFill" lazy-load="true" />
+          <image src="{{item.pic + '_w600'}}" class="image" mode="aspectFill" lazy-load="true" />
         </view>
         <view class="goods-title">{{item.name}}</view>
         <view style='display:flex;'>
@@ -73,7 +73,7 @@
   <view class="goods-container" wx:if="{{goodsRecommend.length > 0 && activeCategoryId == 0}}">
     <view class="goods-box" wx:for="{{goodsRecommend}}" wx:key="id" bindtap="toDetailsTap" data-id="{{item.id}}">
       <view class="img-box">
-        <image src="{{item.pic}}" class="image" mode="aspectFill" lazy-load="true" />
+        <image src="{{item.pic + '_w600'}}" class="image" mode="aspectFill" lazy-load="true" />
       </view>
       <view class="goods-title">{{item.name}}</view>
       <view style='display:flex;'>
@@ -89,7 +89,7 @@
       <block wx:for="{{kanjiaList}}" wx:key="id">
         <view class="weui-media-box weui-media-box_appmsg">
           <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-            <image class="weui-media-box__thumb" src="{{item.pic}}" />
+            <image class="weui-media-box__thumb" src="{{item.pic + '_w600'}}" />
           </view>
           <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
             <view class="weui-media-box__title">{{item.name}}</view>
@@ -117,7 +117,7 @@
     <view class='tuan'>
       <view class='tuan-item' wx:for="{{pingtuanList}}" wx:key="id">
         <view class='tuan-goods-pic'>
-          <image src="{{item.pic}}" mode="aspectFill" lazy-load='{{true}}' />
+          <image src="{{item.pic+ '_w600'}}" mode="aspectFill" lazy-load='{{true}}' />
         </view>
         <view class='tuan-title'>{{item.name}}</view>
         <view class='tuan-profile'>{{item.characteristic}}</view>
@@ -140,7 +140,7 @@
   <view class="goods-container">
     <view class="goods-box" wx:for="{{goods}}" wx:key="id" bindtap="toDetailsTap" data-id="{{item.id}}">
       <view class="img-box">
-        <image src="{{item.pic}}" class="image" mode="aspectFill" lazy-load="true" />
+        <image src="{{item.pic+ '_w600'}}" class="image" mode="aspectFill" lazy-load="true" />
       </view>
       <view class="goods-title">{{item.name}}</view>
       <view style='display:flex;'>
