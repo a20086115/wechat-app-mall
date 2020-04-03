@@ -128,6 +128,14 @@
   </navigator> -->
 
   <view class="space"></view>  
+  <view class="line"></view>
+  <navigator url="/pages/pingtuan-list/index">
+    <view class="menu-item">
+      <view class="l">我的拼团</view>
+      <image class="next" src="/images/icon/next.png"></image>
+    </view>
+  </navigator>
+  <view class="line"></view>
   <navigator url="/pages/select-address/index">
     <view class="menu-item">
       <view class="l">学生资料</view>
@@ -148,6 +156,7 @@
       <image class="next" src="/images/icon/next.png"></image>
     </view>
   </navigator>
+  <view class="line"></view>
   <navigator url="/pages/sign/index">
     <view class="menu-item">
       <view class="l">每日签到</view>

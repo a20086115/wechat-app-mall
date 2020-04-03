@@ -1,0 +1,29 @@
+.order-list{
+    width: 100%;
+}
+.price-box{
+    width: 720rpx;
+    display: flex;
+    padding-bottom: 30rpx;
+    justify-content: space-around;
+    border-bottom: 2px solid #eee;
+}
+.price-box .btn{
+    width: 166rpx;
+    height: 60rpx;
+    box-sizing: border-box;
+    text-align: center;
+    line-height: 60rpx;
+    border: 1rpx solid #ccc;
+    border-radius: 6rpx;
+    margin-left: 20rpx;
+    font-size:26rpx;
+}
+.price-box .active{
+    border:1px solid #e64340;
+    color: #e64340;
+}
+.remark {
+  color:#e64340;
+  margin-bottom: 20rpx;
+}

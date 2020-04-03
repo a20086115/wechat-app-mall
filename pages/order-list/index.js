@@ -92,6 +92,7 @@ Page({
           return;
         }
         let _msg = '订单金额: ' + money +' 元'
+        res.data.balance = 0; // 强制不使用余额
         if (res.data.balance > 0) {
           _msg += ',可用余额为 ' + res.data.balance +' 元'
           if (money - res.data.balance > 0) {

@@ -1,0 +1,23 @@
+<view class="order-list" hidden="{{pingtuanList ? false : true}}">
+    <view class="a-order" wx:for="{{pingtuanList}}" wx:key="index">
+      <view bindtap="toGoodsDetail" data-id="{{item.goodsInfo.id}}" style="width: 98%; margin: 35rpx auto; " >
+        <van-card
+          tag="{{item.tuanInfo.statusStr}}"
+          desc=" "
+          price="{{ item.goodsInfo.pingtuanPrice }}"
+          title="{{ item.goodsInfo.name }}"
+          thumb="{{ item.goodsInfo.pic }}"
+          origin-price ="{{ item.goodsInfo.originalPrice }}"
+        >
+        <view slot="tags">
+          <van-button style="margin-top:20rpx" size="mini" plain type="warning">{{ item.goodsInfo.tags }}</van-button>
+        </view>
+        </van-card>
+      </view>
+      <view class="price-box">
+        <view>{{item.tuanInfo.dateAdd}} </view>
+        <view class="btn"  bindtap="toMyPingtuan" data-id="{{item.tuanInfo.id}}">拼团详情</view>
+      </view>
+     
+    </view>
+  </view>

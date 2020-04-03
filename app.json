@@ -35,7 +35,8 @@
     "pages/invoice/list",
     "pages/invoice/apply",
     "pages/deposit/pay",
-    "pages/pingtuan-detail/index"
+    "pages/pingtuan-detail/index",
+    "pages/pingtuan-list/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

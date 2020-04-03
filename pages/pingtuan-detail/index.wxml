@@ -1,11 +1,13 @@
 <!--miniprogram/pages/pk/pk.wxml-->
 <view class="page_container">
-  <view style="width: 80%; margin: 35rpx auto; border: 2px solid orange;" >
+  <view bindtap="toGoodsDetail" style="width: 95%; margin: 35rpx auto; border: 2px solid orange;" >
     <van-card
       tag="拼团"
+      desc=" "
       price="{{ goodInfo.basicInfo.pingtuanPrice }}"
       title="{{ goodInfo.basicInfo.name }}"
       thumb="{{ goodInfo.pics[0].pic }}"
+      origin-price ="{{ goodInfo.basicInfo.originalPrice }}"
     >
     <view slot="tags">
       <van-button style="margin-top:20rpx" size="mini" plain type="warning">{{ goodInfo.basicInfo.tags }}</van-button>
@@ -32,16 +34,29 @@
     </view>
       
   </view>
-  <view style="text-align:center">
-    <van-button open-type="share" style="width:40%" type="info">邀请好友</van-button>
+  <view style="margin:0 auto; width:80%">
+    <van-button open-type="share"  size="large"  type="info">邀请好友</van-button>
   </view>
  
-  <van-dialog
-    title="PK邀请"
-    message="您的好友邀请你参与体重PK打卡~是否参加？"
-    show="{{ visibleInviteDialog }}"
-    show-cancel-button
-    bind:close="onInviteClose"
-  >
-  </van-dialog>
+  <view class="page__bd" wx:if="{{pingtuanInfo.setting}}" style='width:750rpx;'>
+    <view class="weui-cells__title">商品拼团设置</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+        <view class="weui-cell__bd">已成团</view>
+        <view class="weui-cell__ft">{{pingtuanInfo.setting.numberSucccess}}</view>
+      </view>
+      <view class="weui-cell">
+        <view class="weui-cell__bd">成团人数</view>
+        <view class="weui-cell__ft">{{pingtuanInfo.setting.numberPersion}}</view>
+      </view>
+      <view class="weui-cell">
+        <view class="weui-cell__bd">退款条件</view>
+        <view class="weui-cell__ft">{{pingtuanInfo.setting.timeoutHours}}小时未成团</view>
+      </view>
+      <view class="weui-cell">
+        <view class="weui-cell__bd">截止</view>
+        <view class="weui-cell__ft">{{pingtuanInfo.setting.dateEnd}}</view>
+      </view>
+    </view>
+  </view>
 </view>

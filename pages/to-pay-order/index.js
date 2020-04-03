@@ -27,14 +27,7 @@ Page({
     remark: ''
   },
   onShow(){
-    AUTH.checkHasLogined().then(isLogined => {
-      this.setData({
-        wxlogin: isLogined
-      })
-      if (isLogined) {
-        this.doneShow()
-      }
-    })
+   
   },
   async doneShow() {
     let allowSelfCollection = wx.getStorageSync('ALLOW_SELF_COLLECTION')
@@ -67,6 +60,14 @@ Page({
   },
 
   onLoad(e) {
+    AUTH.checkHasLogined().then(isLogined => {
+      this.setData({
+        wxlogin: isLogined
+      })
+      if (isLogined) {
+        this.doneShow()
+      }
+    })
     console.log(e)
     let _data = {
       isNeedLogistics: 1
@@ -180,10 +181,10 @@ Page({
         that.getMyCoupons();
         return;
       }
-      that.processAfterCreateOrder(res)
+      that.processAfterCreateOrder(res, postData.pingtuanOpenId)
     })
   },
-  async processAfterCreateOrder(res) {
+  async processAfterCreateOrder(res, pingtuanOpenId) {
     // 直接弹出支付，取消支付的话，去订单列表
     const res1 = await WXAPI.userAmount(wx.getStorageSync('token'))
     if (res1.code != 0) {
@@ -202,7 +203,7 @@ Page({
         url: "/pages/order-list/index"
       })
     } else {
-      wxpay.wxpay('order', money, res.data.id, "/pages/order-list/index");
+      wxpay.wxpay('order', money, res.data.id, pingtuanOpenId ? "/pages/pingtuan-list/index" : "/pages/order-list/index");
     }
   },
   async initShippingAddress() {
@@ -220,6 +221,9 @@ Page({
   },
   processYunfei() {
     var goodsList = this.data.goodsList;
+    if (goodsList.length == 0) {
+      return
+    }
     var goodsJsonStr = "[";
     var isNeedLogistics = 0;
     var allGoodsPrice = 0;
