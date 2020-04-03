@@ -25,8 +25,9 @@ Page({
     propertyChildNames: "",
     canSubmit: false, //  选中规格尺寸时候是否允许加入购物车
     shopType: "addShopCar", //购物类型，加入购物车或立即购买，默认为加入购物车
+    
     pingtuanInfo: null, // 是否已经拼团过该商品
-
+    pingtuanId: "", // 邀请人的拼团ID
   },
   async onLoad(e) {
     console.log(e)
@@ -40,10 +41,12 @@ Page({
     }
     this.data.goodsId = e.id
     const that = this
-    this.data.kjJoinUid = e.kjJoinUid    
+    this.data.kjJoinUid = e.kjJoinUid
+    this.data.pingtuanId = e.pingtuanId    
     this.setData({
       goodsDetailSkuShowType: CONFIG.goodsDetailSkuShowType,
-      curuid: wx.getStorageSync('uid')
+      curuid: wx.getStorageSync('uid'),
+      pingtuanId: e.pingtuanId 
     })
     this.reputation(e.id)
     this.shippingCartInfo()
@@ -212,6 +215,11 @@ Page({
   },
   toPingtuan: function(e) {
     let pingtuanopenid = 0
+    // 如果是邀请进来的， 默认使用邀请的拼团ID
+    if(this.data.pingtuanId){
+      pingtuanopenid = this.data.pingtuanId
+    }
+    // 如果在拼团列表中自选，则使用选择的拼团ID
     if (e.currentTarget.dataset.pingtuanopenid) {
       pingtuanopenid = e.currentTarget.dataset.pingtuanopenid
     }
@@ -509,13 +517,9 @@ Page({
   onShareAppMessage: function(options) {
     console.log(options)
     console.log(this.data.pingtuanInfo)
-    let path = '/pages/goods-details/index?id=' + this.data.goodsDetail.basicInfo.id + '&inviter_id=' + wx.getStorageSync('uid');
-    if (options.target.id == "pintuanInvite"){
-      path += '&pingtuan_id=' + this.data.pingtuanInfo.id;
-    }
     let _data = {
       title: this.data.goodsDetail.basicInfo.name,
-      path: path,
+      path: '/pages/goods-details/index?id=' + this.data.goodsDetail.basicInfo.id + '&inviter_id=' + wx.getStorageSync('uid'),
       success: function(res) {
         // 转发成功
       },
@@ -526,6 +530,10 @@ Page({
     if (this.data.kjJoinUid) {
       _data.title = this.data.curKanjiaprogress.joiner.nick + '邀请您帮TA砍价'
       _data.path += '&kjJoinUid=' + this.data.kjJoinUid
+    }
+    if (this.data.pingtuanInfo) {
+      _data.title = '您的好友邀请您一起拼团'
+      _data.path += '&pingtuanId=' + this.data.pingtuanInfo.id;
     }
     return _data
   },
@@ -721,6 +729,13 @@ Page({
           }
         ],
         images: [
+          {
+            url: 'poster_bg.png',
+            x: 0,
+            y: 0,
+            width: 750,
+            height: picHeight + 120
+          },
           {
             x: 133,
             y: 133,

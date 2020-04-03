@@ -153,9 +153,10 @@ Page({
   },
   onPageScroll(e) {
     let scrollTop = this.data.scrollTop
-    this.setData({
-      scrollTop: e.scrollTop
-    })
+    this.data.scrollTop = e.scrollTop
+    // this.setData({
+    //   scrollTop: e.scrollTop
+    // })
   },
   async getGoodsList(categoryId, append) {
     if (categoryId == 0) {

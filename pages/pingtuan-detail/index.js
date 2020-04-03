@@ -30,13 +30,12 @@ Page({
       tuanId: tuanId
     })
     if (res.code == 0) {
-      let num = res.data.setting.numberPersion - res.data.setting.numberDoing
-      while (num-- > 0){
+      while (res.data.joiners.length < res.data.setting.numberPersion){
         res.data.joiners.push({
           apiExtUserHelp:{
             avatarUrl: "../../../images/defaultAvatarUrl.png"
           },
-          uidHelp: num
+          uidHelp: res.data.joiners.length
         })
       }
       let tuanInfo = res.data.tuanInfo;
@@ -56,6 +55,25 @@ Page({
         goodInfo: res.data
       })
     }
+  },
+  toGoodsDetail() {
+    wx.navigateTo({
+      url: "/pages/goods-details/index?id=" + this.data.goodInfo.basicInfo.id
+    })
+  },  
+  onShareAppMessage: function (options) {
+    console.log(options)
+    let _data = {
+      title: '您的好友邀请您一起拼团',
+      path: '/pages/goods-details/index?id=' + this.data.goodInfo.basicInfo.id + '&inviter_id=' + wx.getStorageSync('uid') + '&pingtuanId=' + this.data.pingtuanInfo.tuanInfo.id,
+      success: function (res) {
+        // 转发成功
+      },
+      fail: function (res) {
+        // 转发失败
+      }
+    }
+    return _data
   },
   onChange(e) {
     this.setData({
