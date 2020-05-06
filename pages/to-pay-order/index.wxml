@@ -84,7 +84,7 @@
     </view>
   </view>
 
-  <view class="jiesuan-box safeAreaOldPaddingBttom safeAreaNewPaddingBttom">
+  <view class="jiesuan-box safeAreaNewPaddingBttom safeAreaOldPaddingBttom">
     <view class="left-price">
       <view class="total">合计：¥ {{allGoodsAndYunPrice - youhuijine}} + {{totalScoreToPay}} 积分</view>
     </view>

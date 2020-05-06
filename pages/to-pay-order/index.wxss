@@ -210,6 +210,7 @@ form {
   border-top: 1px solid #eee;
   background-color: #fff;
   z-index: 999;
+  box-sizing: content-box;
 }
 
 .jiesuan-box .to-pay-btn {
