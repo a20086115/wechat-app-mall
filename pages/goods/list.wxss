@@ -151,6 +151,7 @@ page,view,image,input {
   bottom: 16rpx;
 }
 
+
 .sku-mask {
   width: 100vw;
   height: 100vh;
@@ -238,4 +239,4 @@ page,view,image,input {
   bottom: 0;
   left: 0;
   text-align: center;
-} 
+}

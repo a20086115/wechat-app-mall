@@ -95,7 +95,7 @@ module.exports =
 /* eslint-disable */
 // 小程序开发api接口工具包，https://github.com/gooking/wxapi
 var API_BASE_URL = 'https://api.it120.cc';
-var subDomain = 'tz';
+var subDomain = '-';
 
 var request = function request(url, needSubDomain, method, data) {
   var _url = API_BASE_URL + (needSubDomain ? '/' + subDomain : '') + url;
@@ -413,6 +413,12 @@ module.exports = {
   myCoupons: function myCoupons(data) {
     return request('/discounts/my', true, 'get', data);
   },
+  mergeCouponsRules: function mergeCouponsRules() {
+    return request('/discounts/merge/list', true, 'get');
+  },
+  mergeCoupons: function mergeCoupons(data) {
+    return request('/discounts/merge', true, 'post', data);
+  },
   fetchCoupons: function fetchCoupons(data) {
     return request('/discounts/fetch', true, 'post', data);
   },
@@ -663,6 +669,8 @@ module.exports = {
     return request('/qrcode/wxa/unlimit', true, 'post', data);
   },
   uploadFile: function uploadFile(token, tempFilePath) {
+    var expireHours = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '';
+
     var uploadUrl = API_BASE_URL + '/' + subDomain + '/dfs/upload/file';
     return new Promise(function (resolve, reject) {
       wx.uploadFile({
@@ -670,7 +678,8 @@ module.exports = {
         filePath: tempFilePath,
         name: 'upfile',
         formData: {
-          'token': token
+          'token': token,
+          expireHours: expireHours
         },
         success: function success(res) {
           resolve(JSON.parse(res.data));
@@ -784,6 +793,9 @@ module.exports = {
   },
   modifyUserInfo: function modifyUserInfo(data) {
     return request('/user/modify', true, 'post', data);
+  },
+  modifyUserPassword: function modifyUserPassword(token, pwdOld, pwdNew) {
+    return request('/user/modify/password', true, 'post', { token: token, pwdOld: pwdOld, pwdNew: pwdNew });
   },
   uniqueId: function uniqueId() {
     var type = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
@@ -1020,6 +1032,12 @@ module.exports = {
   },
   siteStatistics: function siteStatistics() {
     return request('/site/statistics', true, 'get');
+  },
+  goodsDynamic: function goodsDynamic(type) {
+    return request('/site/goods/dynamic', true, 'get', { type: type });
+  },
+  fetchSubDomainByWxappAppid: function fetchSubDomainByWxappAppid(appid) {
+    return request('/subdomain/appid/wxapp', false, 'get', { appid: appid });
   },
   cmsArticleFavPut: function cmsArticleFavPut(token, newsId) {
     return request('/cms/news/fav/add', true, 'post', { token: token, newsId: newsId });

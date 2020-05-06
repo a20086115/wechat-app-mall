@@ -22,7 +22,6 @@ Page({
     youhuijine: 0, //优惠券金额
     curCoupon: null, // 当前选择使用的优惠券
     curCouponShowText: '请选择使用优惠券', // 当前选择使用的优惠券
-    allowSelfCollection: '0', // 是否允许到店自提
     peisongType: 'kd', // 配送方式 kd,zq 分别表示快递/到店自取
     remark: ''
   },
@@ -30,11 +29,6 @@ Page({
    
   },
   async doneShow() {
-    let allowSelfCollection = wx.getStorageSync('ALLOW_SELF_COLLECTION')
-    if (!allowSelfCollection || allowSelfCollection != '1') {
-      allowSelfCollection = '0'
-      this.data.peisongType = 'kd'
-    }
     let shopList = [];
     const token = wx.getStorageSync('token')
     //立即购买下单
@@ -53,7 +47,6 @@ Page({
     }
     this.setData({
       goodsList: shopList,
-      allowSelfCollection: allowSelfCollection,
       peisongType: this.data.peisongType
     });
     this.initShippingAddress()
@@ -94,18 +87,23 @@ Page({
     this.data.remark = e.detail.value
   },
   goCreateOrder(){
-    wx.requestSubscribeMessage({
-      tmplIds: ['aakNrb5coS5BuEZ3j0oLP9vNJs49-Mta4dBSpEHe3c4Bg', 'aaAa-7o_9vGBNsxeh-h4u87tgNq9IzhP8KhVuiNjyTzxo'],
-      success(res) {
-        
-      },
-      fail(e) {
-        console.error(e)
-      },
-      complete: (e) => {
-        this.createOrder(true)
-      },
-    })
+    const subscribe_ids = wx.getStorageSync('subscribe_ids')
+    if (subscribe_ids) {
+      wx.requestSubscribeMessage({
+        tmplIds: subscribe_ids.split(','),
+        success(res) {
+          
+        },
+        fail(e) {
+          console.error(e)
+        },
+        complete: (e) => {
+          this.createOrder(true)
+        },
+      })
+    } else {
+      this.createOrder(true)
+    }    
   },
   createOrder: function (e) {
     var that = this;
@@ -219,8 +217,11 @@ Page({
     }
     this.processYunfei();
   },
-  processYunfei() {
-    var goodsList = this.data.goodsList;
+  processYunfei() {    
+    var goodsList = this.data.goodsList
+    if (goodsList.length == 0) {
+      return
+    }
     if (goodsList.length == 0) {
       return
     }

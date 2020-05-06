@@ -28,7 +28,7 @@
   </van-count-down>
 
   <view class="memberListContiner">
-    <view class="memberListItem" wx:for="{{pingtuanInfo.joiners}}" wx:key="{{item.uidHelp}}">
+    <view class="memberListItem" wx:for="{{pingtuanInfo.joiners}}" wx:key="uidHelp">
       <van-image  custom-class="memberListItem" round width="100rpx" height="100rpx" src="{{item.apiExtUserHelp.avatarUrl}}" />  
       <view class="hideText">{{item.apiExtUserHelp.nickName}}</view>
     </view>

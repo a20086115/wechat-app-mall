@@ -3,7 +3,7 @@ const CONFIG = require('config.js')
 const AUTH = require('utils/auth')
 App({
   onLaunch: function() {
-    WXAPI.init(CONFIG.subDomain) // 从根目录的 config.js 文件中读取
+    WXAPI.init(CONFIG.subDomain)
     const that = this;
     // 检测新版本
     const updateManager = wx.getUpdateManager()
@@ -46,56 +46,24 @@ App({
         wx.showToast({
           title: '网络已断开',
           icon: 'loading',
-          duration: 2000,
-          complete: function() {
-            that.goStartIndexPage()
-          }
         })
       } else {
         that.globalData.isConnected = true
         wx.hideToast()
       }
-    });
-    //  获取接口和后台权限
-    WXAPI.vipLevel().then(res => {
-      that.globalData.vipLevel = res.data
     })
-    //  获取商城名称
-    WXAPI.queryConfigBatch('mallName,recharge_amount_min,WITHDRAW_MIN,ALLOW_SELF_COLLECTION,order_hx_uids').then(function(res) {
+    WXAPI.queryConfigBatch('mallName,WITHDRAW_MIN,ALLOW_SELF_COLLECTION,order_hx_uids,subscribe_ids,share_profile').then(res => {
       if (res.code == 0) {
         res.data.forEach(config => {
           wx.setStorageSync(config.key, config.value);
-          if (config.key === 'recharge_amount_min') {
-            that.globalData.recharge_amount_min = config.value;
-          }
         })
-        
-      }
-    })
-    // 读取评价赠送多少积分
-    WXAPI.scoreRules({
-      code: 'goodReputation'
-    }).then(function(res) {
-      if (res.code == 0) {        
-        that.globalData.order_reputation_score = res.data[0].score;
-      }
-    })
-    // 拉取站点信息
-    WXAPI.siteStatistics().then(res => {
-      if (res.code == 0) {
-        if (res.data.wxAppid) {
-          wx.setStorageSync('wxAppid', res.data.wxAppid);
+        if (this.configLoadOK) {
+          this.configLoadOK()
         }
       }
     })
   },
-  goStartIndexPage: function() {
-    setTimeout(function() {
-      wx.redirectTo({
-        url: "/pages/start/start"
-      })
-    }, 1000)
-  },  
+    
   onShow (e) {
     this.globalData.launchOption = e
     // 保存邀请人
@@ -141,8 +109,6 @@ App({
     })
   },
   globalData: {                
-    isConnected: true,
-    launchOption: undefined,
-    vipLevel: 0
+    isConnected: true
   }
 })

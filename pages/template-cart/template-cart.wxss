@@ -56,6 +56,7 @@
 .a-gooods {
   width: 100%;
   overflow: hidden;
+  position: relative;
 }
 
 .a-goods-conts {
@@ -90,7 +91,7 @@
 }
 
 .goods-info .text-box .goods-title {
-  width: 500rpx;
+  width: 450rpx;
   font-size: 28rpx;
   color: #000;
   text-overflow: ellipsis;
@@ -229,4 +230,12 @@
   color: #fff;
   width: 686rpx;
   font-size: 24rpx;
+}
+
+.del-icon {
+  position: absolute;
+  right: 32rpx;
+  top: 32rpx;
+  width: 50rpx;
+  height: 50rpx;
 }

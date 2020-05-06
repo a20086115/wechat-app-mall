@@ -155,6 +155,9 @@ Page({
           totalScoreToPay: goodsDetailRes.data.basicInfo.minScore
         });
       }
+      if (goodsDetailRes.data.basicInfo.shopId) {
+        this.shopSubdetail(goodsDetailRes.data.basicInfo.shopId)
+      }
       if (goodsDetailRes.data.basicInfo.pingtuan) {
         that.pingtuanList(goodsId)
       }
@@ -190,10 +193,19 @@ Page({
         const pingtuanSetRes = await WXAPI.pingtuanSet(goodsId)
         if (pingtuanSetRes.code == 0) {
           _data.pingtuanSet = pingtuanSetRes.data
+          // 如果是拼团商品， 默认显示拼团价格
           _data.selectSizePrice = goodsDetailRes.data.basicInfo.pingtuanPrice
         }        
       }
       that.setData(_data);
+    }
+  },
+  async shopSubdetail(shopId){
+    const res = await WXAPI.shopSubdetail(shopId)
+    if (res.code == 0) {
+      this.setData({
+        shopSubdetail: res.data
+      })
     }
   },
   goShopCar: function() {
@@ -514,9 +526,7 @@ Page({
     buyNowInfo.kjId = this.data.kjId;
     return buyNowInfo;
   },
-  onShareAppMessage: function(options) {
-    console.log(options)
-    console.log(this.data.pingtuanInfo)
+  onShareAppMessage() {
     let _data = {
       title: this.data.goodsDetail.basicInfo.name,
       path: '/pages/goods-details/index?id=' + this.data.goodsDetail.basicInfo.id + '&inviter_id=' + wx.getStorageSync('uid'),
