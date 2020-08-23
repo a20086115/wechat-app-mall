@@ -26,15 +26,15 @@
     </button>
   </form> -->
   <form bindsubmit="withdraw" report-submit="true">
-    <button class='btn' type="default" size="mini" form-type="submit" hover-class="btn-hover" plain="true">
-      提现
+    <button class='btn' type="default" size="mini" form-type="-submit" hover-class="btn-hover" plain="true">
+      提现请加管理员微信：QZJY_Tina365 或 13928852758
     </button>
   </form>
 </view>
 <view class="page">
   <view class="page__bd">
     <view class="weui-tab">
-      <view class="weui-navbar">
+      <view class="weui-navbar hide">
         <block wx:for="{{tabs}}" wx:key="*this">
           <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
             <view class="weui-navbar__title">{{item}}</view>

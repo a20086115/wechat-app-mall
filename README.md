@@ -13,6 +13,14 @@
 
 新增直播带货支持，具体详见使用说明
 
+# 版本说明
+
+master 主线版本（8.x）为主力开发版本，激进的朋友可以选择使用该版本，可体验最新的尝鲜功能；
+
+7.x 分支为目前稳定版本，保守的用户可使用非主线分支：
+
+[https://github.com/EastWorld/wechat-app-mall/tree/7.x](https://github.com/EastWorld/wechat-app-mall/tree/7.x)
+
 # 今日头条/抖音小程序版本
 
 本项目的今日头条/抖音小程序版本，请移步至下面的地址：
@@ -25,14 +33,18 @@
 
 ## 详细配置/使用教程
 
-[https://www.it120.cc/help/sv06xh.html](https://www.it120.cc/help/sv06xh.html)
+[https://www.it120.cc/help/ikfe2k.html](https://www.it120.cc/help/ikfe2k.html)
+
+**遇到使用问题？**
+
+[点击这里找答案，可用关键词搜索](https://www.it120.cc/help.html)
 
 ## 其他开源模板
 
-| 舔果果小铺 | 面馆风格小程序 | AI名片 |
+| 舔果果小铺（升级版） | 面馆风格小程序 | AI名片 |
 | :------: | :------: | :------: |
-| <img src="https://cdn.it120.cc/apifactory/2018/04/01/b7b8f5a0fcfc72454ade8510ab929717.jpg" width="200px"> | <img src="https://cdn.it120.cc/apifactory/2019/03/29/9e30cfe31eabcd218eb9c434f17e9295.jpg" width="200px"> | <img src="https://cdn.it120.cc/apifactory/2018/12/18/c2324da4eea91602f385db5b523b13ca.jpg" width="200px"> | 
-| [开源地址](https://github.com/walcer/TianguoguoXiaopu) | [开源地址](https://gitee.com/javazj/noodle_shop_procedures) | [开源地址](https://github.com/gooking/visitingCard) |
+| <img src="https://dcdn.it120.cc/2020/03/22/d4a4abd1-ea23-42e0-a5f1-210e737ed841.jpg" width="200px"> | <img src="https://cdn.it120.cc/apifactory/2019/03/29/9e30cfe31eabcd218eb9c434f17e9295.jpg" width="200px"> | <img src="https://cdn.it120.cc/apifactory/2018/12/18/c2324da4eea91602f385db5b523b13ca.jpg" width="200px"> | 
+| [开源地址](https://github.com/gooking/TianguoguoXiaopu) | [开源地址](https://gitee.com/javazj/noodle_shop_procedures) | [开源地址](https://github.com/gooking/visitingCard) |
 
 ## 联系作者
 
@@ -40,15 +52,17 @@
 | :------: | :------: |
 | <img src="https://cdn.it120.cc/apifactory/2019/07/03/a86f7e46-1dbc-42fe-9495-65403659671e.jpeg" width="200px"> | <img src="https://cdn.it120.cc/apifactory/2019/07/03/fda59aeb-4943-4379-93bb-92856740bd6a.jpeg" width="200px"> |
 
-## 接口 & 后台声明
-
-本项目为小程序商城纯前端项目，由于人力和精力所限，本项目并未有开发配套的后台系统，而是直接使用了 [api 工厂](https://www.it120.cc/) 提供的免费接口和后台，可以完全满足本项目的所有功能需求。
+## 本项目使用了下面的组件，在此鸣谢
 
 - [接口 SDK](https://github.com/gooking/apifm-wxapi)
 
-- [免费后台](https://admin.it120.cc)
+- [api工厂](https://admin.it120.cc)
 
 - [WeUI](https://github.com/Tencent/weui-wxss/)
+
+- [小程序富文本插件（html 渲染）](https://github.com/jin-yufeng/Parser)
+
+- [小程序海报组件-生成朋友圈分享海报并生成图片](https://github.com/jasondu/wxa-plugin-canvas)
 
 - [每日签到日历控件 wx_calendar](https://github.com/treadpit/wx_calendar)
 
@@ -179,12 +193,6 @@ thirdScriptError
 
   1. 创建订单接口增加 expireMinutes 参数；
   2. 代表多少分钟未支付自动关闭本订单，传 0 不自动关闭订单；
-
-- android看得到图片，ios手机看不到图片
-  
-  这是wxparse解析器的问题 很多人都中枪~
-
-  全局搜索并注释掉 console.dir 就好了
 
 - [更多问题？](https://www.yuque.com/apifm/doc)
   

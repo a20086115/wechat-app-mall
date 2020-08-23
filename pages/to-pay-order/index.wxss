@@ -205,11 +205,12 @@ form {
   width: 100%;
   height: 100rpx;
   position: fixed;
-  bottom: 0;
+  bottom: calc(env(safe-area-inset-bottom) / 2);
   left: 0;
   border-top: 1px solid #eee;
   background-color: #fff;
   z-index: 999;
+  box-sizing: content-box;
 }
 
 .jiesuan-box .to-pay-btn {

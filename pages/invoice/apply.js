@@ -32,9 +32,24 @@ Page({
       this.setData({
         wxlogin: isLogined
       })
+    })    
+  },
+  chooseInvoiceTitle(){
+    wx.chooseInvoiceTitle({
+      success: (res) => {
+        this.setData({
+          wxInvoiceInfo: res
+        })    
+      },
+      fail: err => {
+        console.error(err);
+        wx.showToast({
+          title: '读取失败',
+          icon: 'none'
+        })
+      }
     })
   },
-
   /**
    * 生命周期函数--监听页面隐藏
    */
@@ -66,7 +81,7 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage() {    
     return {
       title: '申请开票',
       imageUrl: 'https://cdn.it120.cc/apifactory/2019/06/13/13f5f43c-4819-414d-88f5-968e32facd79.png',

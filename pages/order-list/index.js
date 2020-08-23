@@ -145,7 +145,6 @@ Page({
         });
       } else {
         this.setData({
-          hasRefund: false,
           status: options.type
         });
       }      

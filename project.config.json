@@ -5,10 +5,11 @@
 		"es6": true,
 		"enhance": true,
 		"postcss": false,
+		"preloadBackgroundData": false,
 		"minified": true,
 		"newFeature": true,
 		"coverView": true,
-		"nodeModules": true,
+		"nodeModules": false,
 		"autoAudits": false,
 		"showShadowRootInWxmlPanel": true,
 		"scopeDataCheck": false,
@@ -24,7 +25,7 @@
 		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.10.2",
+	"libVersion": "2.10.4",
 	"appid": "wx2e3846f1d2f3dab9",
 	"projectname": "My%20Firsttalk",
 	"scripts": {},
@@ -44,6 +45,10 @@
 			"list": []
 		},
 		"game": {
+			"current": -1,
+			"list": []
+		},
+		"gamePlugin": {
 			"current": -1,
 			"list": []
 		},
@@ -103,6 +108,13 @@
 					"id": -1,
 					"name": "分销中心",
 					"pathName": "pages/fx/apply-status",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "notice",
+					"pathName": "pages/notice/index",
 					"scene": null
 				}
 			]

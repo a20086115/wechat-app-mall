@@ -41,7 +41,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "",
     "navigationBarTextStyle": "black",
     "onReachBottomDistance": 50
   },
@@ -85,14 +85,9 @@
   "navigateToMiniProgramAppIdList": [
     "wx56c8f077de74b07c"
   ],
-  "plugins": {
-    "wxparse": {
-      "version": "1.0.10",
-      "provider": "wx5d60c080635009b1"
-    }
-  },
   "usingComponents": {
     "float-menu": "/components/float-menu/index",
+    "parser":"/components/parser.20200414.min/parser",
     "van-action-sheet": "./miniprogram_npm/vant-weapp/action-sheet/index",
     "van-area": "./miniprogram_npm/vant-weapp/area/index",
     "van-badge": "./miniprogram_npm/vant-weapp/badge/index",
@@ -106,6 +101,7 @@
     "van-col": "./miniprogram_npm/vant-weapp/col/index",
     "van-count-down": "./miniprogram_npm/vant-weapp/count-down/index",
     "van-dialog": "./miniprogram_npm/vant-weapp/dialog/index",
+    "van-divider": "./miniprogram_npm/vant-weapp/divider/index",
     "van-field": "./miniprogram_npm/vant-weapp/field/index",
     "van-goods-action": "./miniprogram_npm/vant-weapp/goods-action/index",
     "van-goods-action-icon": "./miniprogram_npm/vant-weapp/goods-action-icon/index",

@@ -1,4 +1,3 @@
-const CONFIG = require('../../config.js')
 const WXAPI = require('apifm-wxapi')
 const AUTH = require('../../utils/auth')
 const TOOLS = require('../../utils/tools.js') // TOOLS.showTabBarBadge();
@@ -26,6 +25,7 @@ Page({
     wx.showShareMenu({
       withShareTicket: true
     })     
+    this.categories();
   },
   async categories() {
     wx.showLoading({
@@ -126,9 +126,9 @@ Page({
       url: '/pages/goods/list?name=' + this.data.inputVal,
     })
   },
-  onShareAppMessage: function () {
+  onShareAppMessage() {    
     return {
-      title: '"' + wx.getStorageSync('mallName') + '" ' + CONFIG.shareProfile,
+      title: '"' + wx.getStorageSync('mallName') + '" ' + wx.getStorageSync('share_profile'),
       path: '/pages/index/index?inviter_id=' + wx.getStorageSync('uid')
     }
   },
@@ -145,10 +145,10 @@ Page({
     wx.removeStorageSync('_categoryId')
     if (_categoryId) {
       this.data.categorySelected.id = _categoryId
+      this.categories();
     } else {
       this.data.categorySelected.id = null
     }
-    this.categories();
   },
   async addShopCar(e) {
     const curGood = this.data.currentGoods.find(ele => {
