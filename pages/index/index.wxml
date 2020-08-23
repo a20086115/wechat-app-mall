@@ -20,7 +20,7 @@
       <image  mode="scaleToFill" bindtap="tapBanner" data-url="{{item.linkUrl}}" src="{{item.picUrl}}" />
     </swiper-item>
   </swiper>
-  <view wx:if="{{goodsDynamic}}" class="goodsDynamic">
+  <view wx:if="{{goodsDynamic && false}}" class="goodsDynamic">
     <swiper class="swiper2" autoplay circular vertical>
       <navigator wx:for="{{goodsDynamic}}" wx:key="index" url="/pages/goods-details/index?id={{item.goodsId}}">
         <swiper-item>

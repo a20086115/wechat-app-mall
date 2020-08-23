@@ -162,6 +162,12 @@ Page({
         that.pingtuanList(goodsId)
       }
       that.data.goodsDetail = goodsDetailRes.data;
+      if(that.data.goodsDetail.basicInfo.status == "1"){
+        wx.showModal({
+          title: "课程已下架"
+        })
+      }
+
       if (goodsDetailRes.data.basicInfo.videoId) {
         that.getVideoSrc(goodsDetailRes.data.basicInfo.videoId);
       }

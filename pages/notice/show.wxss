@@ -16,3 +16,51 @@
 .text image {
   max-width: 100%;
 }
+
+.tuan {
+  width:750rpx;
+  background-color: #F2f2f2;
+  padding-top:10rpx;
+}
+.tuan-item {
+  width:720rpx;
+  margin: auto;
+  margin-top: 20rpx;
+  background-color: #FFF;
+  position: relative;
+}
+.tuan-goods-pic {
+  width:720rpx;
+  height: 250rpx;
+  overflow: hidden;
+}
+.tuan-goods-pic image {
+  width:720rpx;
+}
+.tuan-title {
+  margin-top: 20rpx;
+  margin-left: 20rpx;
+  font-size:30rpx;
+  font-weight: 400;
+}
+.tuan-profile {
+  margin-left: 20rpx;
+  font-size:28rpx;
+  color:#999;
+}
+.tuan-btn {
+  margin: 30rpx 0; 
+  animation-iteration-count:infinite;
+  -webkit-animation: twinkling 1s infinite ease-in-out
+}
+
+@-webkit-keyframes twinkling{
+  from {  background-color: #749a02;  -webkit-box-shadow: 0 0 9px #333; }
+  50% { background-color: #91bd09; -webkit-box-shadow: 0 0 18px #91bd09; }
+  to { background-color: #749a02; -webkit-box-shadow: 0 0 9px #333; }
+}
+@keyframes twinkling{
+  from { background-color: #749a02; -webkit-box-shadow: 0 0 9px #333; }
+  50% { background-color: #91bd09; -webkit-box-shadow: 0 0 18px #91bd09; }
+  to { background-color: #749a02; -webkit-box-shadow: 0 0 9px #333; }
+}

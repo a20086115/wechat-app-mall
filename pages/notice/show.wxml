@@ -1,6 +1,17 @@
 <view class="notice">
   <view class="title">{{notice.title}}</view>
   <view class="text">
-    <parser html="{{notice.content}}" />
+    <view wx:for="{{contentArray}}">
+       <parser wx:if="{{!item.isGoods}}"  html="{{item.data}}" />
+       <view wx:else>
+          <view class='tuan-goods-pic'>
+            <image src="{{goods[item.data].pic+ '_w600'}}" mode="aspectFill" lazy-load='{{true}}' />
+          </view>
+          <view class='tuan-title'>{{goods[item.data].name}}</view>
+          <view class='tuan-profile'>{{goods[item.data].characteristic}}</view>
+          <view class="weui-badge" style="margin-left: 20rpx;" wx:if="{{goods[item.data].tags}}">{{goods[item.data].tags}}</view>
+          <button class="tuan-btn" type="warn" size="default" bindtap="toDetailsTap" data-id="{{goods[item.data].id}}">立即参加</button>
+       </view>
+    </view>
   </view>
 </view>
